@@ -1,0 +1,14 @@
+{
+
+  "TC001":{
+          "testcase_description": "Restaurant has no offer",
+          "offer_data": {
+            "restaurant_id": 1, "offer_type": "FLATX", "offer_value": 10, "customer_segment": ["p1"]
+          },
+          "cart_data": {
+            "cart_value": 1200, "restaurant_id": 45, "user_id": 101
+          },
+          "expected_cart_value": 190
+  }
+
+}
