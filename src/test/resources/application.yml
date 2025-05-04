@@ -1,0 +1,9 @@
+application:
+
+  base_url: "http://localhost:9001/api/v1"
+
+  endpoints:
+    add_offer: "/offer"
+    apply_cart_offer: "/cart/apply_offer"
+
+  user_segment_mock_url: "http://localhost:1080/api/v1/user_segment"

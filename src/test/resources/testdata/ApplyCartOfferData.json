@@ -1,14 +1,98 @@
 {
+  "sanity_test": {
+    "testcase_description": "Verify if add offer and get user segment APIs are working",
+    "offer_data_1": {
+      "restaurant_id": 101, "offer_type": "FLATX", "offer_value": 10, "customer_segment": ["p1"]
+    },
+    "offer_data_2": {
+      "restaurant_id": 102, "offer_type": "FLATX_PERCENT", "offer_value": 10, "customer_segment": ["p1"]
+    },
+    "user_id": 1,
+    "user_segment": "p1"
+  },
 
   "TC001":{
           "testcase_description": "Restaurant has no offer",
-          "offer_data": {
-            "restaurant_id": 1, "offer_type": "FLATX", "offer_value": 10, "customer_segment": ["p1"]
-          },
           "cart_data": {
-            "cart_value": 1200, "restaurant_id": 45, "user_id": 101
+            "cart_value": 200, "restaurant_id": 201, "user_id": 1
           },
-          "expected_cart_value": 190
-  }
+          "expected_cart_value": 200
+  },
 
+  "TC002":{
+    "testcase_description": "Restaurant has FLATX offer with 0 < offer_amount < cart_value",
+    "offer_data": {
+      "restaurant_id": 104, "offer_type": "FLATX", "offer_value": 10, "customer_segment": ["p1"]
+    },
+    "cart_data": {
+      "cart_value": 200, "restaurant_id": 104, "user_id": 1
+    },
+    "expected_cart_value": 190
+  },
+
+  "TC003":{
+    "testcase_description": "Restaurant has FLATX offer with 0 offer value",
+    "offer_data": {
+      "restaurant_id": 105, "offer_type": "FLATX", "offer_value": 0, "customer_segment": ["p2"]
+    },
+    "cart_data": {
+      "cart_value": 200, "restaurant_id": 105, "user_id": 2
+    },
+    "expected_cart_value": 200
+  },
+
+  "TC004":{
+    "testcase_description": "Restaurant has FLATX offer value exceeding cart value",
+    "offer_data": {
+      "restaurant_id": 106, "offer_type": "FLATX", "offer_value": 300, "customer_segment": ["p3"]
+    },
+    "cart_data": {
+      "cart_value": 200, "restaurant_id": 106, "user_id": 3
+    },
+    "expected_cart_value": 0
+  },
+
+  "TC005":{
+    "testcase_description": "Restaurant has FLATXPERCENT offer with 0 < offer_amount < cart_value",
+    "offer_data": {
+      "restaurant_id": 107, "offer_type": "FLATX_PERCENT", "offer_value": 10, "customer_segment": ["p1"]
+    },
+    "cart_data": {
+      "cart_value": 200, "restaurant_id": 107, "user_id": 1
+    },
+    "expected_cart_value": 180
+  },
+
+  "TC006":{
+    "testcase_description": "Restaurant has FLATXPERCENT offer with 0 value",
+    "offer_data": {
+      "restaurant_id": 108, "offer_type": "FLATX_PERCENT", "offer_value": 0, "customer_segment": ["p2"]
+    },
+    "cart_data": {
+      "cart_value": 200, "restaurant_id": 108, "user_id": 2
+    },
+    "expected_cart_value": 200
+  },
+
+  "TC007":{
+    "testcase_description": "Restaurant has 100% FLATXPERCENT offer",
+    "offer_data": {
+      "restaurant_id": 109, "offer_type": "FLATX_PERCENT", "offer_value": 100, "customer_segment": ["p3"]
+    },
+    "cart_data": {
+      "cart_value": 200, "restaurant_id": 109, "user_id": 3
+    },
+    "expected_cart_value": 0
+  },
+
+  "TC008":{
+    "testcase_description": "User places 2 orders to same restaurant with FLATXPERCENT offer",
+    "offer_data": {
+      "restaurant_id": 110, "offer_type": "FLATX_PERCENT", "offer_value": 10, "customer_segment": ["p1"]
+    },
+    "cart_data": {
+      "cart_value": 200, "restaurant_id": 110, "user_id": 1
+    },
+    "expected_cart_value": 180
+  }
 }
